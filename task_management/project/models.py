@@ -8,7 +8,10 @@ class Project(BaseModel):
     description = models.CharField(max_length=64, blank=False, null=False)
     client = models.ForeignKey(User, on_delete=models.DO_NOTHING, related_name="projects")
     start_date = models.DateTimeField(blank=False, null=False)
-    end_date = models.DateTimeField(blank=False, null=True, default=None)
+    end_date = models.DateTimeField(blank=True, null=True, default=None)
+
+    def __str__(self) -> str:
+        return self.name
 
     class Meta:
         db_table = "Project"
