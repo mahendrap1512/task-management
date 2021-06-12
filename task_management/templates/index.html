@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block title %}
+    Home
+{% endblock %}
+
+{% block main %}
+<div>
+    <h2>Task-Management</h2>
+    {% if user.is_authenticated %}
+        {% include 'project_list.html' %}
+    {% else %}
+
+    <form method="post" action="{% url 'app_login' %}">
+        {% csrf_token %}
+
+        <input type="text" name="username" placeholder="Username" />
+        <br/>
+        <br/>
+        <input type="password" name="password" id="password" placeholder="Password"/>
+        <br/>
+        <br>
+        <button type="submit">Login</button>
+      </form>
+      <br/>
+      <div>
+          <small>Not a registered User</small>
+          <span><strong><a href="{% url 'register' %}">Register</a></strong></span>
+      </div>
+    {% endif %}
+
+  {{error}}
+</div>
+{% endblock %}

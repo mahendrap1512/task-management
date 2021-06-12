@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Projects
+{% endblock %}
+
+{% block main %}
+<div>
+    <h2>Your active Projects</h2>
+
+    <ul>
+        {% for project in projects %}
+        <div>
+            <li>
+                <a href="{% url 'project_task' project.id %}">{{ project }}</a>
+                </a>
+            </li>
+        </div>
+        {% endfor %}
+    </ul>
+
+</div>
+
+<div>
+    <br>
+    <br>
+    <p>Add New Project</p>
+</div>
+{% endblock %}
