@@ -9,6 +9,9 @@ Projects
     <h2>Your active Projects</h2>
 
     <ul>
+        {% if projects.count == 0%}
+        <p>Hey, you don't have any active Projects.</p>
+        {% else %}
         {% for project in projects %}
         <div>
             <li>
@@ -17,6 +20,7 @@ Projects
             </li>
         </div>
         {% endfor %}
+        {% endif %}
     </ul>
 
 </div>
@@ -24,6 +28,8 @@ Projects
 <div>
     <br>
     <br>
+   <a href="{% url 'create_project' %}">
     <p>Add New Project</p>
+   </a>
 </div>
 {% endblock %}

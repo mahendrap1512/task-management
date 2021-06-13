@@ -1,5 +1,9 @@
+from datetime import datetime
+
 from common.base_view import BaseView
+from django.db.models import Q
 from django.shortcuts import render
+from project.models import Project
 
 
 class MainView(BaseView):
@@ -7,6 +11,9 @@ class MainView(BaseView):
     def get(self, request, *args, **kwargs):
         user = request.user
         if user.is_authenticated:
-            return render(request, 'projects.html')
+            projects = Project.objects.filter((Q(end_date=None) | Q(
+                end_date__gt=datetime.now())), client=request.user)
+            context = {"projects": projects}
+            return render(request, 'project_list.html', context=context)
         else:
             return render(request=request, template_name='index.html')
