@@ -18,6 +18,8 @@ from django.urls import path
 from project.views import ProjectListView, ProjectView, MainView, CreateProjectView
 from django.contrib.auth.views import LogoutView
 from accounts.views import RegisterView, LoginView
+from task.views import CreateTaskView
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -26,6 +28,7 @@ urlpatterns = [
     path('projects/', ProjectListView.as_view(), name='projects'),
     path('projects/create/', CreateProjectView.as_view(), name="create_project"),
     path('project/<str:project_id>/', ProjectView.as_view(), name="project_task"),
+    path('project/<str:project_id>/task.create', CreateTaskView.as_view(), name="create_task"),
     path('login/', LoginView.as_view(), name="app_login"),
     path('logout/', LogoutView.as_view(next_page='home'), name='logout'),
 ]

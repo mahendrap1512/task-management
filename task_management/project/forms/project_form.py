@@ -1,6 +1,4 @@
 from django import forms
-from django.forms import fields
-from project.models import Project
 
 
 class DateTimeInput(forms.DateInput):

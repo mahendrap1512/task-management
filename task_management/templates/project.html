@@ -7,7 +7,9 @@ Projects
 {% block main %}
 <div>
     <h2>Your task for {{project}}</h2>
-
+    {% if tasks.count == 0 %}
+    <p>Horray! No task here.</p>
+    {% else %}
     <ul>
         {% for task in tasks %}
         <div>
@@ -17,12 +19,15 @@ Projects
         </div>
         {% endfor %}
     </ul>
+    {% endif %}
 
 </div>
 
 <div>
     <br>
     <br>
-    <p>Add New Task</p>
+    <a href="{% url 'create_task' project.id %}">
+        <p>Add New Task</p>
+    </a>
 </div>
 {% endblock %}

@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Tasks
+{% endblock %}
+
+{% block main %}
+<div>
+    <h3>Add a new task in {{project}}</h3>
+    <form method="post" action="{% url 'create_task' project.id %}">
+        {% csrf_token %}
+        {{form.as_p}}
+        <button type="submit">Create Task</button>
+    </form>
+
+</div>
+{% endblock %}
