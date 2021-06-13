@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block title %}
-Projects
+Project Task
 {% endblock %}
 
 {% block main %}
@@ -14,7 +14,11 @@ Projects
         {% for task in tasks %}
         <div>
             <li>
-                {{task}}
+                <span>
+                    <a href="{% url 'update_task' project.id task.id %}">{{task}}</a>
+                    &emsp;
+                    {{task.status}}
+                </span>
             </li>
         </div>
         {% endfor %}
@@ -27,7 +31,11 @@ Projects
     <br>
     <br>
     <a href="{% url 'create_task' project.id %}">
-        <p>Add New Task</p>
+        Add New Task
     </a>
+    &emsp;
+    <a href="{% url 'projects' %}">Back to active Projects</a>
+    &emsp;
+    <a href="{% url 'delete_project' project.id %}">Delete this Project</a>
 </div>
 {% endblock %}

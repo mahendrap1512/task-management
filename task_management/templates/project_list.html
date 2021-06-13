@@ -15,8 +15,12 @@ Projects
         {% for project in projects %}
         <div>
             <li>
-                <a href="{% url 'project_task' project.id %}">{{ project }}</a>
-                </a>
+                <span>
+                    <a href="{% url 'project_task' project.id %}">{{ project }}</a>
+                    </a>
+                    &emsp;  &emsp;
+                    {{project.description}}
+                </span>
             </li>
         </div>
         {% endfor %}
@@ -28,8 +32,8 @@ Projects
 <div>
     <br>
     <br>
-   <a href="{% url 'create_project' %}">
-    <p>Add New Project</p>
-   </a>
+    <a href="{% url 'create_project' %}">
+        <p>Add New Project</p>
+    </a>
 </div>
 {% endblock %}

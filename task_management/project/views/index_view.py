@@ -12,7 +12,7 @@ class MainView(BaseView):
         user = request.user
         if user.is_authenticated:
             projects = Project.objects.filter((Q(end_date=None) | Q(
-                end_date__gt=datetime.now())), client=request.user)
+                end_date__gt=datetime.now())), client=request.user, is_deleted=False)
             context = {"projects": projects}
             return render(request, 'project_list.html', context=context)
         else:

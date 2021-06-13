@@ -15,10 +15,10 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from project.views import ProjectListView, ProjectView, MainView, CreateProjectView
+from project.views import ProjectListView, ProjectView, MainView, CreateProjectView, DeleteProjectView
 from django.contrib.auth.views import LogoutView
 from accounts.views import RegisterView, LoginView
-from task.views import CreateTaskView
+from task.views import CreateTaskView, UpdateTaskView, DeleteTaskView
 
 
 urlpatterns = [
@@ -28,7 +28,11 @@ urlpatterns = [
     path('projects/', ProjectListView.as_view(), name='projects'),
     path('projects/create/', CreateProjectView.as_view(), name="create_project"),
     path('project/<str:project_id>/', ProjectView.as_view(), name="project_task"),
-    path('project/<str:project_id>/task.create', CreateTaskView.as_view(), name="create_task"),
+    path('project/<str:project_id>/delete/', DeleteProjectView.as_view(), name="delete_project"),
+    path('project/<str:project_id>/task/create/', CreateTaskView.as_view(), name="create_task"),
+    path('project/<str:project_id>/task/<str:task_id>/update/', UpdateTaskView.as_view(), name="update_task"),
+    path('project/<str:project_id>/task/<str:task_id>/delete/', DeleteTaskView.as_view(), name="delete_task"),
     path('login/', LoginView.as_view(), name="app_login"),
     path('logout/', LogoutView.as_view(next_page='home'), name='logout'),
+
 ]
